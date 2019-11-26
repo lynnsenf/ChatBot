@@ -32,6 +32,7 @@ def LemNormalize(text):
 
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up", "hey", "How you doin'?")
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me", "How you doin'?"]
+
 if friend == "Ross":
     FRIEND_QUOTES = ("PIVOT!", "We were on a break!", "Unagi!")
 elif friend == "Monica":
