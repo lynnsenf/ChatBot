@@ -2,8 +2,8 @@ import random
 import string  # to process standard python strings
 import nltk
 
-#nltk.download('punkt')  # first-time use only
-#nltk.download('wordnet')  # first-time use only
+# nltk.download('punkt')  # first-time use only
+# nltk.download('wordnet')  # first-time use only
 
 flag = True
 print("Hi there, I can be any of the six Friends, who do you want me to be?")
@@ -13,21 +13,24 @@ f = open(friend + '.txt', 'r')
 raw = f.read()
 raw = raw.lower()  # converts to lowercase
 
-sent_tokens = nltk.sent_tokenize(raw)  # converts to list of sentences
-word_tokens = nltk.word_tokenize(raw)  # converts to list of words
+sent_tokens = nltk.sent_tokenize(raw)  # Segmenting the text into sentences. Output: converted list of sentences
+word_tokens = nltk.word_tokenize(raw)  # Tokenize a string to split off punctuation other than periods. (don't)
+                                       # Output: converted list of words
 
-lemmer = nltk.stem.WordNetLemmatizer()
+lemmer = nltk.stem.WordNetLemmatizer()  # Lemma: basic word form
 
 
 # WordNet is a semantically-oriented dictionary of English included in NLTK.
-def LemTokens(tokens):
+def LemTokens(tokens):  # creates normalized tokens
     return [lemmer.lemmatize(token) for token in tokens]
 
 
-remove_punkt_dict = dict((ord(punkt), None) for punkt in string.punctuation)
+remove_punkt_dict = dict((ord(punkt), None) for punkt in string.punctuation)  # removes punctuation
+
 
 def LemNormalize(text):
-    return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punkt_dict)))
+    return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punkt_dict)))  # ??
+
 
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up", "hey", "How you doin'?")
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me", "How you doin'?"]
@@ -37,13 +40,14 @@ if friend == "Ross":
 elif friend == "Monica":
     FRIEND_QUOTES = ("Seven!", "I have to clean.")
 elif friend == "Rachel":
-    FRIEND_QUOTES = ("Sorry I'm late, but I left late. ...","")
+    FRIEND_QUOTES = ("Sorry I'm late, but I left late. ...","I want to get one of those job things.")
 elif friend == "Phoebe":
     FRIEND_QUOTES = ("That is brand new information.", "She's your lobster. ...")
 elif friend == "Chandler":
     FRIEND_QUOTES = ("Tell him to email me at www-dot-haha-not-so-much-dot-com!","")
 elif friend == "Joey":
     FRIEND_QUOTES = ("How you doin'?", "Va' fa Napoli!", "Here come the meat sweats...")
+
 
 def greeting(sentence):
     for word in sentence.split():
@@ -52,9 +56,10 @@ def greeting(sentence):
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
+# to extract features in a format supported by machine learning algorithms from datasets consisting of formats such as text and image.
 
 from sklearn.metrics.pairwise import cosine_similarity
-
+# is a measure of similarity between two non-zero vectors of an inner product space that measures the cosine of the angle between them
 
 def response(user_response):
     robo_response = ''
