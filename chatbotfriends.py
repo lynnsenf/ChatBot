@@ -56,10 +56,17 @@ def greeting(sentence):
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-# to extract features in a format supported by machine learning algorithms from datasets consisting of formats such as text and image.
+
+# to extract features in a format supported by machine learning algorithms from datasets consisting of formats such as
+# text and image. Convert a collection of raw documents to a matrix of TF-IDF features.
+# TFIDF =  term frequency–inverse document frequency. used as a weighting factor in searches of information retrieval,
+# text mining, and user modeling.
+# The tf–idf value increases proportionally to the number of times a word appears in the document
 
 from sklearn.metrics.pairwise import cosine_similarity
-# is a measure of similarity between two non-zero vectors of an inner product space that measures the cosine of the angle between them
+
+# is a measure of similarity between two non-zero vectors of an inner product space that measures the
+# cosine of the angle between them
 
 def response(user_response):
     robo_response = ''
